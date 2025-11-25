@@ -1,0 +1,13 @@
+from django.contrib import admin
+from .models import Task, Status
+
+# Register your models here.
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ('name', 'status', 'created_date', 'active')
+    list_filter = ('status', 'active')
+    search_fields = ('name', 'comment')
+
+
+admin.site.register(Status)
