@@ -50,15 +50,15 @@ Make sure you have Python 3 and `pip` installed on your system.
     ```
 
 3.  **Install the dependencies:**
-    *(Note: It's a good practice to create a `requirements.txt` file by running `pip freeze > requirements.txt` so others can install dependencies with `pip install -r requirements.txt`)*
 
     ```bash
-    pip install Django
+    pip install -r requirements.txt
     ```
 
 4.  **Apply database migrations:**
     This will set up the database schema for our `Task` model.
     ```bash
+    python manage.py makemigrations tasks
     python manage.py migrate
     ```
 
