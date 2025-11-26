@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Delete</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; background-color: #f9f9f9; }
+        .container { max-width: 500px; margin: auto; background: #fff; padding: 2em; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-danger { background-color: #dc3545; color: white; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Are you sure?</h1>
+        <p>Are you sure you want to delete the task: "{{ object.name }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="Confirm" class="btn btn-danger">
+            <a href="{% url 'tasks' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

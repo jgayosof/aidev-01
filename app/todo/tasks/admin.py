@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task, Status
+from .models import Task
 
 # Register your models here.
 
@@ -8,6 +8,3 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ('name', 'status', 'created_date', 'active')
     list_filter = ('status', 'active')
     search_fields = ('name', 'comment')
-
-
-admin.site.register(Status)

@@ -17,34 +17,23 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class Status(BaseModel):
-    """
-    Represents the status of a task (e.g., 'To Do', 'In Progress', 'Done').
-    """
-    STATUS_CHOICES = [
-        ("PENDING", "Pending"),
-        ("DONE", "Done"),
-        ("CANCELLED", "Cancelled"),
-    ]
-
-    name = models.CharField(max_length=50,
-                            unique=True,
-                            choices=STATUS_CHOICES,
-                            default="PENDING")
-    description = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Task(BaseModel):
     """
     Represents a single task in the to-do list.
     """
+    class Status(models.TextChoices):
+        PENDING = 'PENDING', 'Pending'
+        DONE = 'DONE', 'Done'
+        CANCELLED = 'CANCELLED', 'Cancelled'
+
     name = models.CharField(max_length=200)
     comment = models.TextField(blank=True, null=True)
-    status = models.ForeignKey(Status,
-                               on_delete=models.DO_NOTHING)
+    due_date = models.DateField(blank=True, null=True)
+    status = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.PENDING,
+    )
 
     def __str__(self):
         return self.name
